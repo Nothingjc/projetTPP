@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CursusRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class Cursus
      * @ORM\Column(type="smallint")
      */
     private $annee_apres_le_bac;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=etudiant::class, inversedBy="cursuses")
+     */
+    private $fk_etudiant;
+
+    public function __construct()
+    {
+        $this->fk_etudiant = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -69,6 +81,30 @@ class Cursus
     public function setAnneeApresLeBac(int $annee_apres_le_bac): self
     {
         $this->annee_apres_le_bac = $annee_apres_le_bac;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|etudiant[]
+     */
+    public function getFkEtudiant(): Collection
+    {
+        return $this->fk_etudiant;
+    }
+
+    public function addFkEtudiant(etudiant $fkEtudiant): self
+    {
+        if (!$this->fk_etudiant->contains($fkEtudiant)) {
+            $this->fk_etudiant[] = $fkEtudiant;
+        }
+
+        return $this;
+    }
+
+    public function removeFkEtudiant(etudiant $fkEtudiant): self
+    {
+        $this->fk_etudiant->removeElement($fkEtudiant);
 
         return $this;
     }

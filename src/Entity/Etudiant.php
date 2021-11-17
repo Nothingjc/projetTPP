@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EtudiantRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -51,6 +53,16 @@ class Etudiant
      * @ORM\Column(type="integer")
      */
     private $Fk_cursus;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Cursus::class, mappedBy="fk_etudiant")
+     */
+    private $cursuses;
+
+    public function __construct()
+    {
+        $this->cursuses = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -137,6 +149,33 @@ class Etudiant
     public function setFkCursus(int $Fk_cursus): self
     {
         $this->Fk_cursus = $Fk_cursus;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Cursus[]
+     */
+    public function getCursuses(): Collection
+    {
+        return $this->cursuses;
+    }
+
+    public function addCursus(Cursus $cursus): self
+    {
+        if (!$this->cursuses->contains($cursus)) {
+            $this->cursuses[] = $cursus;
+            $cursus->addFkEtudiant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCursus(Cursus $cursus): self
+    {
+        if ($this->cursuses->removeElement($cursus)) {
+            $cursus->removeFkEtudiant($this);
+        }
 
         return $this;
     }

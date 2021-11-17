@@ -35,7 +35,7 @@ class Cursus
     private $annee_apres_le_bac;
 
     /**
-     * @ORM\ManyToMany(targetEntity=etudiant::class, inversedBy="cursuses")
+     * @ORM\ManyToMany(targetEntity=Etudiant::class, inversedBy="cursuses")
      */
     private $fk_etudiant;
 

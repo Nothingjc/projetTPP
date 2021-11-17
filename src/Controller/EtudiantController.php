@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Cursus;
 use App\Entity\Etudiant;
+use App\Form\EtudiantFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,5 +41,18 @@ class EtudiantController extends AbstractController
         return $this->render('etudiant/new.html.twig',
         ['EtudiantForm' => $form->createView(),
     ]);
+    }
+
+    #[Route('/cursus/listeCursus', name: 'listeEtudiants')]
+     
+    public function etudiantList(){
+        $sousTitre = 'Liste des étudiants : ';
+        $etudiant = $this->getDoctrine()
+            ->getRepository(Etudiant::class)
+            ->findAll();
+        return $this->render('cursus/listeCursus.html.twig', [
+            'etudiants_liste' => $etudiant,
+            'sous_titre'=> $sousTitre,
+        ]);
     }
 }

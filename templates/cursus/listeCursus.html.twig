@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+{% block title %}Liste des cursus{% endblock %}
+{% block body %}
+<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2 px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<h1>Liste des étudiants</h1>
+
+		
+		<ul>
+			{% if (etudiants_liste is not empty) %}
+				{% for i in etudiants_liste %}
+					<a href="/etudiant/etudiantDetail.html.twig"><li>{{ i.getNom()}} {{i.getPrenom}}
+						
+					</li></a>
+				{% endfor %}
+				
+			{% else %}
+				<p>Pas de cursus</p>
+
+			{% endif %}
+
+		</ul>
+
+	</div>
+
+
+{% endblock %}

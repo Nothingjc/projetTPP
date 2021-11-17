@@ -55,4 +55,9 @@ class EtudiantController extends AbstractController
             'sous_titre'=> $sousTitre,
         ]);
     }
+
+    #[Route('/etudiant/etudiantDetail', name: 'etudiant_detail')]
+    public function etudiantDetail(){
+        return $this->render('etudiant/etudiantDetail.html.twig');
+    }
 }

@@ -1,5 +1,5 @@
 {% extends "base.html.twig" %}
-{% block title %}Liste des cursus{% endblock %}
+{% block title %}Détail d'un étudiant{% endblock %}
 {% block body %}
 <style>
 		.example-wrapper {
@@ -23,7 +23,7 @@
 
 				{% for i in etudiants_liste %}
 
-					<h1>{{ i.getNom()}} {{i.getPrenom()}}</h1>
+					<h1>{{ i.getNom()}} {{i.getPrenom}}</h1>
 				<ul>
                 <li>{{i.getDateNaissance()}}</li>
                 <li>{{i.getTelephone()}}</li>
@@ -38,7 +38,7 @@
 
 			{% endif %}
 
-		
+		<a href="{{ path('etudiant_create') }}"><button>Editer étudiant</button></a>
 
 	</div>
 

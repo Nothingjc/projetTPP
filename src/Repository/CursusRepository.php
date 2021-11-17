@@ -36,7 +36,7 @@ class CursusRepository extends ServiceEntityRepository
     }
     */
 
-    /*
+    
     public function findOneBySomeField($value): ?Cursus
     {
         return $this->createQueryBuilder('c')
@@ -46,5 +46,5 @@ class CursusRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+    
 }

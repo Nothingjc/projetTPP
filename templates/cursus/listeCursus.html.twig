@@ -21,7 +21,7 @@
 		<ul>
 			{% if (etudiants_liste is not empty) %}
 				{% for i in etudiants_liste %}
-					<a href="/etudiant/etudiantDetail.html.twig"><li>{{ i.getNom()}} {{i.getPrenom}}
+					<a href="{{path('etudiant_detail', {'value': i.getId()})}}"><li>{{ i.getNom()}} {{i.getPrenom}}
 						
 					</li></a>
 				{% endfor %}
